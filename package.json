@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@clerk/nextjs": "^5.3.2",
+        "@clerk/types": "^4.23.0",
         "@hookform/error-message": "^2.0.1",
         "@hookform/resolvers": "^3.9.0",
         "@prisma/client": "^5.18.0",
