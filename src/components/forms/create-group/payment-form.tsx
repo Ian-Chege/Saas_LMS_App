@@ -6,7 +6,16 @@ import { Button } from "@/components/ui/button"
 import { usePayments } from "@/hooks/payment"
 import { ErrorMessage } from "@hookform/error-message"
 import { CardElement } from "@stripe/react-stripe-js"
+import dynamic from "next/dynamic"
 import Link from "next/link"
+
+const GroupList = dynamic(
+  () =>
+    import("@/components/global/group-list-slider").then(
+      (component) => component.GroupListSlider,
+    ),
+  { ssr: false },
+)
 
 type PaymentFormProps = {
   userId: string
@@ -32,6 +41,12 @@ export const PaymentForm = ({
     <Loader loading={creatingIntent}>
       <form onSubmit={onCreateGroup} className="pt-5">
         {/* GroupList component */}
+        <GroupList
+          selected={isCategory}
+          register={register}
+          label="Select category"
+          slidesOffsetBefore={28}
+        />
         <div className="px-7 mb-2">
           <ErrorMessage
             errors={errors}

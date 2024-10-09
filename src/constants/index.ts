@@ -4,12 +4,14 @@ import {
   CREATE_GROUP_PLACEHOLDER,
   CreateGroupPlaceholderProps,
 } from "./placeholder"
+import { GROUP_LIST, GroupListProps } from "./slider"
 
 type GroupleConstantsProps = {
   landingPageMenu: MenuProps[]
   signUpForm: AuthFormProps[]
   signInForm: AuthFormProps[]
   createGroupPlaceholder: CreateGroupPlaceholderProps[]
+  groupList: GroupListProps[]
 }
 
 export const GROUPLE_CONSTANTS: GroupleConstantsProps = {
@@ -17,4 +19,5 @@ export const GROUPLE_CONSTANTS: GroupleConstantsProps = {
   signUpForm: SIGN_UP_FORM,
   signInForm: SIGN_IN_FORM,
   createGroupPlaceholder: CREATE_GROUP_PLACEHOLDER,
+  groupList: GROUP_LIST,
 }
