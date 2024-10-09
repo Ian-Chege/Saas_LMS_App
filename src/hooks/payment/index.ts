@@ -1,3 +1,5 @@
+"use client"
+
 import { onCreateNewGroup } from "@/actions/groups"
 import {
   onGetStripeClientSecret,
@@ -84,11 +86,30 @@ export const usePayments = (
           await onTransferCommission(stripeId!)
         }
         const created = await onCreateNewGroup(userId, data)
+        if (created && created.status === 200) {
+          toast("Success", {
+            description: created.message,
+          })
+          router.push(
+            `/groups/${created.data?.group[0].id}/channel/${created.data?.group[0].channel[0].id}`,
+          )
+        }
+        if (created && created.status !== 200) {
+          reset()
+          return toast("Error", {
+            description: created.message,
+          })
+        }
       }
     },
   })
-
-  // return {
-  //   onCreateGroup,
-  // }
+  const onCreateGroup = handleSubmit(async (values) => createGroup(values))
+  return {
+    onCreateGroup,
+    register,
+    errors,
+    isPending,
+    creatingIntent,
+    isCategory,
+  }
 }
